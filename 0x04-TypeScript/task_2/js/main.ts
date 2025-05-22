@@ -96,15 +96,32 @@ class Teacher implements TeacherInterface {
 }
 
 // Function to create an Employee instance
-function createEmployee(salary: number | string): string {
+function createEmployee(salary: number | string): Director | Teacher {
     if (typeof salary === "number" && salary < 500) {
-        return "Teacher";
+        return new Teacher();
     } else {
-        return "Director";
+        return new Director();
     }
 }
+// Type predicate function to check if an employee is a Director
+function isDirector(employee: Director | Teacher): employee is Director {
+    return employee instanceof Director;
+}
+
+// Function to execute the correct work method
+function executeWork(employee: Director | Teacher): void {
+    if (isDirector(employee)) {
+        console.log(employee.workDirectorTasks());
+    } else {
+        console.log(employee.workTeacherTasks());
+    }
+}
+
 // Example usage
 const student1 = new StudentClass({ firstName: "Alice", lastName: "Smith" });
+// Example usage
+executeWork(createEmployee(200));  // Output: "Getting to work"
+executeWork(createEmployee(1000)); // Output: "Getting to director tasks"
 
 // Display Teacher objects
 console.log(printTeacher("John", "Doe"));  // Output: "J. Doe"

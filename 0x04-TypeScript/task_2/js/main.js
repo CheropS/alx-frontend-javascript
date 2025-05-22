@@ -50,14 +50,30 @@ var Teacher = /** @class */ (function () {
 // Function to create an Employee instance
 function createEmployee(salary) {
     if (typeof salary === "number" && salary < 500) {
-        return "Teacher";
+        return new Teacher();
     }
     else {
-        return "Director";
+        return new Director();
+    }
+}
+// Type predicate function to check if an employee is a Director
+function isDirector(employee) {
+    return employee instanceof Director;
+}
+// Function to execute the correct work method
+function executeWork(employee) {
+    if (isDirector(employee)) {
+        console.log(employee.workDirectorTasks());
+    }
+    else {
+        console.log(employee.workTeacherTasks());
     }
 }
 // Example usage
 var student1 = new StudentClass({ firstName: "Alice", lastName: "Smith" });
+// Example usage
+executeWork(createEmployee(200)); // Output: "Getting to work"
+executeWork(createEmployee(1000)); // Output: "Getting to director tasks"
 // Display Teacher objects
 console.log(printTeacher("John", "Doe")); // Output: "J. Doe"
 console.log(printTeacher("Jane", "Smith")); // Output: "J. Smith"
