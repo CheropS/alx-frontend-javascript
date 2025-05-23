@@ -69,11 +69,22 @@ function executeWork(employee) {
         console.log(employee.workTeacherTasks());
     }
 }
+// Function to teach the class based on the subject
+function teachClass(todayClass) {
+    if (todayClass === "Math") {
+        return "Teaching Math";
+    }
+    else {
+        return "Teaching History";
+    }
+}
 // Example usage
 var student1 = new StudentClass({ firstName: "Alice", lastName: "Smith" });
 // Example usage
 executeWork(createEmployee(200)); // Output: "Getting to work"
 executeWork(createEmployee(1000)); // Output: "Getting to director tasks"
+console.log(teachClass("Math")); // Output: Teaching Math
+console.log(teachClass("History")); // Output: Teaching History
 // Display Teacher objects
 console.log(printTeacher("John", "Doe")); // Output: "J. Doe"
 console.log(printTeacher("Jane", "Smith")); // Output: "J. Smith"
